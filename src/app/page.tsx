@@ -1,4 +1,4 @@
-// src/app/page.tsx - CLIPBOARD DIRETO SEM MODAL
+// src/app/page.tsx - IMAGEM HD COM FONTE PIXEL
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -89,28 +89,29 @@ export default function Sorteagol() {
 		});
 	};
 
-	// FUNÇÃO OTIMIZADA: Copia imagem direto pro clipboard (sem modal)
+	// FUNÇÃO OTIMIZADA: Qualidade HD + Fonte Pixel
 	const handleCompartilharImagem = async () => {
 		if (!resultado || !resultadoRef.current) return;
 
 		setGerando(true);
 
 		try {
-			// Gera imagem PNG
+			// Detecta mobile
+			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+			
+			// Qualidade MÁXIMA (especialmente mobile)
 			const dataUrl = await toPng(resultadoRef.current, {
 				quality: 1,
-				pixelRatio: 2,
+				pixelRatio: isMobile ? 3 : 2, // 🔥 3x no mobile = HD
 				backgroundColor: '#000000',
-				skipFonts: true,
 				cacheBust: true,
+				fontEmbedCSS: '', // 🔥 Força embed de fontes
+				skipFonts: false, // 🔥 NÃO pula fontes
 			});
 
 			// Converte para blob
 			const response = await fetch(dataUrl);
 			const blob = await response.blob();
-
-			// Detecta se é mobile
-			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
 			// MOBILE: Usa Web Share API
 			if (isMobile && navigator.share) {
@@ -145,7 +146,37 @@ export default function Sorteagol() {
 			}
 		} catch (error) {
 			console.error('Erro ao gerar imagem:', error);
-			alert('Erro ao gerar imagem. Tente novamente.');
+			
+			// FALLBACK: Tenta novamente SEM fontes (se der erro CORS)
+			try {
+				const dataUrl = await toPng(resultadoRef.current!, {
+					quality: 1,
+					pixelRatio: 3,
+					backgroundColor: '#000000',
+					cacheBust: true,
+					skipFonts: true, // Fallback sem fontes
+				});
+
+				const response = await fetch(dataUrl);
+				const blob = await response.blob();
+				
+				const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+				
+				if (isMobile && navigator.share) {
+					const file = new File([blob], 'sorteagol-equipes.png', { type: 'image/png' });
+					await navigator.share({
+						title: 'Sorteagol - Equipes',
+						files: [file],
+					});
+				} else {
+					const item = new ClipboardItem({ 'image/png': blob });
+					await navigator.clipboard.write([item]);
+					setCopiado(true);
+					setTimeout(() => setCopiado(false), 2000);
+				}
+			} catch (fallbackError) {
+				alert('Erro ao gerar imagem. Tente novamente.');
+			}
 		} finally {
 			setGerando(false);
 		}
