@@ -1,4 +1,4 @@
-// src/app/page.tsx - HTML-TO-IMAGE SIMPLIFICADO
+// src/app/page.tsx - HTML-TO-IMAGE COM FONTE E LAYOUT DESKTOP
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -89,7 +89,7 @@ export default function Sorteagol() {
 		});
 	};
 
-	// FUNÇÃO SIMPLIFICADA: Sem fontes externas
+	// 🔥 FUNÇÃO COM FONTE PIXEL E LAYOUT DESKTOP
 	const handleCompartilharImagem = async () => {
 		if (!resultado || !resultadoRef.current) return;
 
@@ -99,17 +99,16 @@ export default function Sorteagol() {
 			// Detecta mobile
 			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 			
-			// Aguarda 500ms pra garantir renderização
-			await new Promise(resolve => setTimeout(resolve, 500));
+			// 🔥 AGUARDA FONTES CARREGAREM
+			await document.fonts.ready;
+			await new Promise(resolve => setTimeout(resolve, 800));
 			
-			// Gera imagem SIMPLES
+			// 🔥 Gera imagem COM FONTES (remove skipFonts)
 			const dataUrl = await toPng(resultadoRef.current, {
 				quality: 1,
-				pixelRatio: isMobile ? 2.5 : 2,
+				pixelRatio: isMobile ? 3 : 2,
 				backgroundColor: '#000000',
 				cacheBust: true,
-				skipFonts: true, // Ignora fontes externas
-				preferredFontFormat: 'woff2',
 			});
 
 			// Converte para blob
@@ -328,8 +327,8 @@ Ex: Renzo e Vitão não podem jogar juntos"
 							<p className="text-sm text-white/70">Resultado do sorteio ⚽</p>
 						</div>
 
-						{/* DIV CAPTURÁVEL */}
-						<div ref={resultadoRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6 bg-black rounded-2xl">
+						{/* DIV CAPTURÁVEL - 🔥 LAYOUT DESKTOP FIXO */}
+						<div ref={resultadoRef} className="grid grid-cols-2 gap-4 p-6 bg-black rounded-2xl font-pixel">
 							{/* Marca d'água no canto */}
 							<div className="col-span-full text-center mb-4">
 								<h3 className="text-2xl font-bold text-blue-400 font-pixel">⚽ SORTEAGOL</h3>
