@@ -11,30 +11,58 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Fonte Pixel */
+/* Fonte Pixel - APLICA EM TUDO */
 .font-pixel,
-.font-pixel * {
+.font-pixel *,
+.font-pixel button,
+.font-pixel span,
+.font-pixel label,
+.font-pixel h1,
+.font-pixel h2,
+.font-pixel h3,
+.font-pixel p,
+.font-pixel div {
 	font-family: 'Press Start 2P', monospace !important;
 }
 
-/* Tamanhos da fonte pixel */
+/* Tamanhos padrão */
+.font-pixel,
 .font-pixel * {
-	font-size: 0.75rem !important;
-	line-height: 1.1 !important;
-	letter-spacing: -0.025em !important;
+	font-size: 0.65rem !important;
+	line-height: 1.2 !important;
+	letter-spacing: -0.02em !important;
 }
 
+/* Labels e textos médios */
 .font-pixel label,
-.font-pixel h3 {
-	font-size: 0.75rem !important;
+.font-pixel span {
+	font-size: 0.65rem !important;
 }
 
+/* Títulos H3 */
+.font-pixel h3 {
+	font-size: 0.8rem !important;
+}
+
+/* Títulos H2 */
+.font-pixel h2 {
+	font-size: 1rem !important;
+}
+
+/* Títulos H1 principais */
 .font-pixel h1 {
 	font-size: 1.4rem !important;
 }
 
-.font-pixel h2 {
-	font-size: 1rem !important;
+/* Botões */
+.font-pixel button {
+	font-size: 0.65rem !important;
+}
+
+/* Inputs */
+.font-pixel input,
+.font-pixel textarea {
+	font-family: 'Press Start 2P', monospace !important;
 }
 
 /* Previne zoom em inputs mobile */
