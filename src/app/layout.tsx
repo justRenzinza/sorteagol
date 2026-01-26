@@ -1,6 +1,13 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
+import { Press_Start_2P } from "next/font/google";
 import "./globals.css";
+
+const pressStart = Press_Start_2P({
+	weight: "400",
+	subsets: ["latin"],
+	variable: "--font-pixel",
+});
 
 export const metadata: Metadata = {
 	title: "Sorteagol - Sorteio de Equipes",
@@ -19,12 +26,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="pt-BR">
-			<head>
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-				<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
-			</head>
+		<html lang="pt-BR" className={pressStart.variable}>
 			<body className="antialiased">
 				{children}
 			</body>

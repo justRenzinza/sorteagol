@@ -163,7 +163,7 @@ export default function Sorteagol() {
 	];
 
 	return (
-		<main className="w-full p-4 md:p-6">
+		<main className="w-full p-4 md:p-6 font-pixel">
 			<div className="max-w-6xl mx-auto space-y-6">
 				{/* Header COMPACTO */}
 				<div className="text-center border-b-4 border-white pb-4">
