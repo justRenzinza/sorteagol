@@ -42,3 +42,13 @@ body {
 .font-pixel h1 {
 	font-size: 1.4rem !important;
 }
+
+/* Previne zoom em inputs mobile */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  select {
+    font-size: 16px !important; /* iOS não dá zoom se >= 16px */
+  }
+}

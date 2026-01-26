@@ -1,30 +1,42 @@
 // src/app/layout.tsx
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
-import Footer from "./components/Footer";
+
+const geistSans = localFont({
+	src: "./fonts/GeistVF.woff",
+	variable: "--font-geist-sans",
+	weight: "100 900",
+});
+const geistMono = localFont({
+	src: "./fonts/GeistMonoVF.woff",
+	variable: "--font-geist-mono",
+	weight: "100 900",
+});
 
 export const metadata: Metadata = {
-	title: "Sorteagol",
-	description: "Sorteio de equipes balanceadas para futebol",
+	title: "Sorteagol - Sorteio de Equipes",
+	description: "Sistema de sorteio de equipes balanceadas para futebol",
+	// 🔥 ADICIONE ISSO:
+	viewport: {
+		width: 'device-width',
+		initialScale: 1,
+		maximumScale: 1, // Bloqueia zoom
+		userScalable: false, // Desabilita zoom manual
+	},
 };
 
 export default function RootLayout({
 	children,
-}: {
+}: Readonly<{
 	children: React.ReactNode;
-}) {
+}>) {
 	return (
 		<html lang="pt-BR">
-			<head>
-				<link rel="preconnect" href="https://fonts.googleapis.com" />
-				<link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-				<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P:wght@400&display=swap" rel="stylesheet" />
-			</head>
-			<body className="font-pixel bg-black text-white min-h-screen antialiased flex flex-col overflow-x-hidden">
-				<div className="flex-1 flex items-center justify-center">
-					{children}
-				</div>
-				<Footer />
+			<body
+				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+			>
+				{children}
 			</body>
 		</html>
 	);
