@@ -1,4 +1,4 @@
-// src/app/page.tsx - IMAGEM HD COM FONTE PIXEL
+// src/app/page.tsx - HTML-TO-IMAGE SIMPLIFICADO
 "use client";
 
 import { useState, useEffect, useRef } from "react";
@@ -89,7 +89,7 @@ export default function Sorteagol() {
 		});
 	};
 
-	// FUNÇÃO OTIMIZADA: Qualidade HD + Fonte Pixel
+	// FUNÇÃO SIMPLIFICADA: Sem fontes externas
 	const handleCompartilharImagem = async () => {
 		if (!resultado || !resultadoRef.current) return;
 
@@ -99,14 +99,17 @@ export default function Sorteagol() {
 			// Detecta mobile
 			const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 			
-			// Qualidade MÁXIMA (especialmente mobile)
+			// Aguarda 500ms pra garantir renderização
+			await new Promise(resolve => setTimeout(resolve, 500));
+			
+			// Gera imagem SIMPLES
 			const dataUrl = await toPng(resultadoRef.current, {
 				quality: 1,
-				pixelRatio: isMobile ? 3 : 2, // 🔥 3x no mobile = HD
+				pixelRatio: isMobile ? 2.5 : 2,
 				backgroundColor: '#000000',
 				cacheBust: true,
-				fontEmbedCSS: '', // 🔥 Força embed de fontes
-				skipFonts: false, // 🔥 NÃO pula fontes
+				skipFonts: true, // Ignora fontes externas
+				preferredFontFormat: 'woff2',
 			});
 
 			// Converte para blob
@@ -137,46 +140,16 @@ export default function Sorteagol() {
 					setTimeout(() => setCopiado(false), 2000);
 				} catch (clipboardError) {
 					// Fallback: Download
-					console.log('Clipboard não suportado, fazendo download');
 					const link = document.createElement('a');
 					link.download = 'sorteagol-equipes.png';
 					link.href = dataUrl;
 					link.click();
 				}
 			}
+			
 		} catch (error) {
 			console.error('Erro ao gerar imagem:', error);
-			
-			// FALLBACK: Tenta novamente SEM fontes (se der erro CORS)
-			try {
-				const dataUrl = await toPng(resultadoRef.current!, {
-					quality: 1,
-					pixelRatio: 3,
-					backgroundColor: '#000000',
-					cacheBust: true,
-					skipFonts: true, // Fallback sem fontes
-				});
-
-				const response = await fetch(dataUrl);
-				const blob = await response.blob();
-				
-				const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-				
-				if (isMobile && navigator.share) {
-					const file = new File([blob], 'sorteagol-equipes.png', { type: 'image/png' });
-					await navigator.share({
-						title: 'Sorteagol - Equipes',
-						files: [file],
-					});
-				} else {
-					const item = new ClipboardItem({ 'image/png': blob });
-					await navigator.clipboard.write([item]);
-					setCopiado(true);
-					setTimeout(() => setCopiado(false), 2000);
-				}
-			} catch (fallbackError) {
-				alert('Erro ao gerar imagem. Tente novamente.');
-			}
+			alert('Erro ao gerar imagem. Tente novamente.');
 		} finally {
 			setGerando(false);
 		}
@@ -355,7 +328,7 @@ Ex: Renzo e Vitão não podem jogar juntos"
 							<p className="text-sm text-white/70">Resultado do sorteio ⚽</p>
 						</div>
 
-						{/* DIV CAPTURÁVEL - Com ref */}
+						{/* DIV CAPTURÁVEL */}
 						<div ref={resultadoRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6 bg-black rounded-2xl">
 							{/* Marca d'água no canto */}
 							<div className="col-span-full text-center mb-4">
