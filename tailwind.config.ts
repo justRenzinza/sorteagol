@@ -5,7 +5,7 @@ export default {
 		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-],
+	],
 	theme: {
 		extend: {
 			colors: {
@@ -13,9 +13,9 @@ export default {
 				foreground: "var(--foreground)",
 			},
 			fontFamily: {
-        		pixel: ['"Press Start 2P"', 'cursive'], // 🔥 Fonte pixel
+				pixel: ['"Press Start 2P"', 'cursive'], // 🔥 Fonte pixel
 			},
-    },
-},
+		},
+	},
 	plugins: [],
 } satisfies Config;

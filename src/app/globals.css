@@ -3,61 +3,61 @@
 
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--background: #ffffff;
+	--foreground: #171717;
 }
 
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
 }
 
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+	:root {
+		--background: #0a0a0a;
+		--foreground: #ededed;
+	}
 }
 
 
 body {
-  background: #000000 !important;
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
+	background: #000000 !important;
+	color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 
 /* Fonte Pixel Menor */
 .font-pixel * {
-  font-family: 'Press Start 2P', monospace !important;
-  font-size: 0.75rem !important; /* Diminui 45% */
-  line-height: 1.1 !important;
-  letter-spacing: -0.025em !important;
+	font-family: 'Press Start 2P', monospace !important;
+	font-size: 0.75rem !important;
+	line-height: 1.1 !important;
+	letter-spacing: -0.025em !important;
 }
 
 
 /* Labels maiores */
 .font-pixel label, .font-pixel h1, .font-pixel h3 {
-  font-size: 0.75rem !important;
+	font-size: 0.75rem !important;
 }
 
 
 /* Títulos principais */
 .font-pixel h1 {
-  font-size: 1.4rem !important;
+	font-size: 1.4rem !important;
 }
 
 
 /* Previne zoom em inputs mobile */
 @media screen and (max-width: 768px) {
-  input[type="text"],
-  input[type="number"],
-  textarea,
-  select {
-    font-size: 16px !important; /* iOS não dá zoom se >= 16px */
-  }
+	input[type="text"],
+	input[type="number"],
+	textarea,
+	select {
+		font-size: 16px !important;
+	}
 }
