@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 @import "tailwindcss";
+
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -12,6 +15,7 @@
   --font-mono: var(--font-geist-mono);
 }
 
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -19,29 +23,34 @@
   }
 }
 
+
 body {
   background: #000000 !important;
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
 /* Fonte Pixel Menor */
 .font-pixel * {
-	font-family: 'Press Start 2P', monospace !important;
-	font-size: 0.75rem !important; /* Diminui 45% */
-	line-height: 1.1 !important;
-	letter-spacing: -0.025em !important;
+  font-family: 'Press Start 2P', monospace !important;
+  font-size: 0.75rem !important; /* Diminui 45% */
+  line-height: 1.1 !important;
+  letter-spacing: -0.025em !important;
 }
+
 
 /* Labels maiores */
 .font-pixel label, .font-pixel h1, .font-pixel h3 {
-	font-size: 0.75rem !important;
+  font-size: 0.75rem !important;
 }
+
 
 /* Títulos principais */
 .font-pixel h1 {
-	font-size: 1.4rem !important;
+  font-size: 1.4rem !important;
 }
+
 
 /* Previne zoom em inputs mobile */
 @media screen and (max-width: 768px) {
