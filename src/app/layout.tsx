@@ -12,12 +12,6 @@ const pressStart = Press_Start_2P({
 export const metadata: Metadata = {
 	title: "Sorteagol - Sorteio de Equipes",
 	description: "Sistema de sorteio de equipes balanceadas para futebol",
-	viewport: {
-		width: 'device-width',
-		initialScale: 1,
-		maximumScale: 1,
-		userScalable: false,
-	},
 };
 
 export default function RootLayout({
@@ -27,6 +21,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="pt-BR" className={pressStart.variable}>
+			<head>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+			</head>
 			<body className="antialiased">
 				{children}
 			</body>
