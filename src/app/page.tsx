@@ -81,7 +81,7 @@ export default function Sorteagol() {
 			texto += `Total: ${equipe.jogadores.length} jogadores\n\n`;
 		});
 
-		texto += "🎲 Sorteio feito em sorteagol.com";
+		texto += "🎲 Sorteio feito em https://sorteagol.vercel.app/";
 
 		navigator.clipboard.writeText(texto).then(() => {
 			setCopiado(true);
@@ -218,9 +218,9 @@ CAPITÃES EM MAIÚSCULO."
 							onChange={(e) => setConflitos(e.target.value)}
 							rows={14}
 							className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all resize-vertical text-white placeholder-gray-400 leading-relaxed text-sm"
-							placeholder="Digite nomes em pares (2 linhas = 1 regra)
+							placeholder="Digite nomes em pares. (2 linhas = 1 regra).
 
-Ex: Renzo e Vitão não podem jogar juntos"
+Ex: Renzo (goleiro) e Vitão (goleiro) não podem jogar juntos, então coloque cada Renzo em uma linha e Vitão na outra."
 						/>
 						<div className="text-right">
 							<span className="text-xs text-blue-300 font-mono font-pixel">
@@ -334,7 +334,7 @@ Ex: Renzo e Vitão não podem jogar juntos"
 							{/* Marca d'água no canto */}
 							<div className="col-span-full text-center mb-4">
 								<h3 className="text-2xl font-bold text-blue-400 font-pixel">⚽ SORTEAGOL</h3>
-								<p className="text-xs text-white/50">sorteagol.com</p>
+								<p className="text-xs text-white/50">https://sorteagol.vercel.app/</p>
 							</div>
 
 							{resultado.equipes.map((equipe, idx) => (

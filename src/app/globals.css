@@ -36,21 +36,13 @@ body {
 	font-size: 1.4rem !important;
 }
 
-/* Previne zoom em inputs mobile */
+/* Previne zoom em inputs mobile - TODOS OS CAMPOS */
 @media screen and (max-width: 768px) {
+	/* Força 16px em TODOS inputs e textareas pra prevenir zoom */
 	input[type="text"],
+	input[type="number"],
 	textarea,
 	select {
 		font-size: 16px !important;
-	}
-	
-	/* Input number SEM font-pixel mantém 16px pra não dar zoom */
-	input[type="number"]:not(.font-pixel *) {
-		font-size: 16px !important;
-	}
-	
-	/* Input number COM font-pixel mantém fonte pequena */
-	.font-pixel input[type="number"] {
-		font-size: 0.75rem !important;
 	}
 }
