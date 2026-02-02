@@ -18,8 +18,8 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Fonte Pixel Menor */
-.font-pixel * {
+/* Fonte Pixel Menor - EXCETO textareas e inputs */
+.font-pixel *:not(textarea):not(input[type="text"]) {
 	font-family: var(--font-pixel), 'Press Start 2P', monospace !important;
 	font-size: 0.75rem !important;
 	line-height: 1.1 !important;
@@ -36,6 +36,12 @@ body {
 	font-size: 1.4rem !important;
 }
 
+/* Input number COM font-pixel mantém fonte pequena */
+.font-pixel input[type="number"] {
+	font-family: var(--font-pixel), 'Press Start 2P', monospace !important;
+	font-size: 0.75rem !important;
+}
+
 /* Previne zoom em inputs mobile */
 @media screen and (max-width: 768px) {
 	input[type="text"],
@@ -45,13 +51,13 @@ body {
 		font-size: 16px !important;
 	}
 	
-	/* Input number COM font-pixel mantém fonte pequena */
+	/* Input number COM font-pixel mantém fonte pequena mesmo no mobile */
 	.font-pixel input[type="number"] {
 		font-size: 0.75rem !important;
 	}
 }
 
-/* 🔥 PREVINE ZOOM COM TOUCH-ACTION */
+/* Touch action previne zoom */
 input,
 textarea,
 select,
