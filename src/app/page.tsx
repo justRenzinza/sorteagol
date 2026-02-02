@@ -271,9 +271,11 @@ Ex: Renzo e Vitão não podem jogar juntos"
 									min={1}
 									max={20}
 									placeholder="6"
-									className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all text-white font-bold text-center text-base [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-moz-number-spin-box]:appearance-none [-moz-appearance:textfield]"
+									className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all text-white font-pixel font-bold text-center [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-moz-number-spin-box]:appearance-none [-moz-appearance:textfield]"
 								/>
 							</div>
+
+
 
 							<button 
 								onClick={handleSortear}
