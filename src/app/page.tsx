@@ -183,7 +183,7 @@ export default function Sorteagol() {
 							value={nomes}
 							onChange={(e) => setNomes(e.target.value)}
 							rows={14}
-							className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all resize-vertical text-white placeholder-gray-400 leading-relaxed text-sm"
+							className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all resize-vertical text-white placeholder-gray-400 leading-relaxed text-base md:text-sm"
 							placeholder="Um nome por linha...
 CAPITÃES EM MAIÚSCULO."
 						/>
@@ -217,7 +217,7 @@ CAPITÃES EM MAIÚSCULO."
 							value={conflitos}
 							onChange={(e) => setConflitos(e.target.value)}
 							rows={14}
-							className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all resize-vertical text-white placeholder-gray-400 leading-relaxed text-sm"
+							className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all resize-vertical text-white placeholder-gray-400 leading-relaxed text-base md:text-sm"
 							placeholder="Digite nomes em pares. (2 linhas = 1 regra).
 
 Ex: Renzo (goleiro) e Vitão (goleiro) não podem jogar juntos, então coloque cada Renzo em uma linha e Vitão na outra."
@@ -274,8 +274,6 @@ Ex: Renzo (goleiro) e Vitão (goleiro) não podem jogar juntos, então coloque c
 									className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all text-white font-pixel font-bold text-center [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-moz-number-spin-box]:appearance-none [-moz-appearance:textfield]"
 								/>
 							</div>
-
-
 
 							<button 
 								onClick={handleSortear}
