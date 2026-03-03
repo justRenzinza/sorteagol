@@ -20,7 +20,7 @@ export default function Sorteagol() {
 
     const nomesCount = nomes.split('\n').filter(nome => nome.trim()).length;
 
-    // ✅ MUDANÇA 1: Conta grupos separados por linha em branco
+    // Conta grupos separados por linha em branco
     const conflitosCount = conflitos
         .split(/\n\s*\n/)
         .filter(g => g.trim()).length;
@@ -165,18 +165,17 @@ export default function Sorteagol() {
                     <p className="text-sm text-white">Crie equipes BALANCEADAS!</p>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
                     {/* 1. Jogadores */}
-                    <div className="space-y-3">
-                        <label className="block text-base font-bold text-white mb-3 flex items-center font-pixel">
+                    <div className="flex flex-col space-y-3">
+                        <label className="block text-base font-bold text-white flex items-center font-pixel">
                             <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs mr-2 font-pixel text-white">1</span>
                             Jogadores
                         </label>
                         <textarea
                             value={nomes}
                             onChange={(e) => setNomes(e.target.value)}
-                            rows={14}
-                            className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all resize-vertical text-white placeholder-gray-400 leading-relaxed text-base md:text-sm"
+                            className="w-full h-[380px] p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all resize-none text-white placeholder-gray-400 leading-relaxed text-base md:text-sm"
                             placeholder="Um nome por linha...
 CAPITÃES EM MAIÚSCULO."
                         />
@@ -192,14 +191,14 @@ CAPITÃES EM MAIÚSCULO."
                         </div>
                     </div>
 
-                    {/* 2. Lista de Jogadores - ULTRA COMPACTO */}
-                    <div className="space-y-3">
-                        <label className="block text-base font-bold text-white mb-3 flex items-center font-pixel">
+                    {/* 2. Lista de Jogadores */}
+                    <div className="flex flex-col space-y-3">
+                        <label className="block text-base font-bold text-white flex items-center font-pixel">
                             <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs mr-2 font-pixel text-white">2</span>
                             Lista de Jogadores
                         </label>
                         
-                        <div className="bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl p-2 min-h-[350px] max-h-[350px] overflow-y-auto">
+                        <div className="bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl p-2 h-[380px] overflow-y-auto">
                             {nomesCount === 0 ? (
                                 <p className="text-white/50 text-xs text-center py-8">
                                     Digite jogadores acima para ver a lista
@@ -234,8 +233,8 @@ CAPITÃES EM MAIÚSCULO."
                     </div>
 
                     {/* 3. Balanceamento */}
-                    <div className="space-y-3">
-                        <label className="block text-base font-bold text-white mb-3 flex items-center font-pixel">
+                    <div className="flex flex-col space-y-3">
+                        <label className="block text-base font-bold text-white flex items-center font-pixel">
                             <span className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs mr-2 font-pixel text-white">3</span>
                             Balanceamento
                             <button
@@ -246,12 +245,10 @@ CAPITÃES EM MAIÚSCULO."
                                 ?
                             </button>
                         </label>
-                        {/* ✅ MUDANÇA 2: Novo placeholder com grupos */}
                         <textarea
                             value={conflitos}
                             onChange={(e) => setConflitos(e.target.value)}
-                            rows={14}
-                            className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all resize-vertical text-white placeholder-gray-400 leading-relaxed text-base md:text-sm"
+                            className="w-full h-[380px] p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all resize-none text-white placeholder-gray-400 leading-relaxed text-base md:text-sm"
                             placeholder={`Separe grupos por linha em branco.
 
 Ex com 2 goleiros (2 times):
@@ -271,67 +268,73 @@ athos`}
                     </div>
 
                     {/* 4. Config */}
-                    <div className="space-y-4">
-                        <div className="flex items-center mb-4 font-pixel">
+                    <div className="flex flex-col space-y-3">
+                        <div className="flex items-center font-pixel">
                             <span className="flex-shrink-0 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3">
                                 <span className="text-xs font-pixel leading-none tracking-tight text-white">4</span>
                             </span>
                             <span className="text-base font-bold text-white font-pixel">Configuração</span>
                         </div>
 
-                        <div className="space-y-4">
-                            <div>
-                                <label className="block text-xs font-bold text-white mb-2 font-pixel">
-                                    Equipes
-                                </label>
-                                <div className="grid grid-cols-3 gap-2">
-                                    {[2,3,4].map(n => (
-                                        <button
-                                            key={n}
-                                            onClick={() => setEquipes(n)}
-                                            className={`p-2 border-2 rounded-xl font-bold text-xs transition-all h-12 flex items-center justify-center font-pixel ${
-                                                equipes === n
-                                                    ? 'bg-blue-500 border-blue-500 text-white shadow-lg'
-                                                    : 'bg-white/10 border-white/50 text-white hover:bg-white/20 hover:border-blue-400/50'
-                                            }`}
-                                        >
-                                            {n}
-                                        </button>
-                                    ))}
+                        {/* CAIXA COM MESMA ALTURA */}
+                        <div className="bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl p-4 h-[380px] flex flex-col justify-between">
+                            <div className="space-y-4">
+                                <div>
+                                    <label className="block text-xs font-bold text-white mb-2 font-pixel">
+                                        Equipes
+                                    </label>
+                                    <div className="grid grid-cols-3 gap-2">
+                                        {[2,3,4].map(n => (
+                                            <button
+                                                key={n}
+                                                onClick={() => setEquipes(n)}
+                                                className={`p-2 border-2 rounded-xl font-bold text-xs transition-all h-12 flex items-center justify-center font-pixel ${
+                                                    equipes === n
+                                                        ? 'bg-blue-500 border-blue-500 text-white shadow-lg'
+                                                        : 'bg-white/10 border-white/50 text-white hover:bg-white/20 hover:border-blue-400/50'
+                                                }`}
+                                            >
+                                                {n}
+                                            </button>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label className="block text-xs font-bold text-white mb-2 font-pixel">
+                                        Jogadores por equipe
+                                    </label>
+                                    <input
+                                        type="number"
+                                        value={porTime}
+                                        onChange={(e) => setPorTime(e.target.value)}
+                                        min={1}
+                                        max={20}
+                                        placeholder="6"
+                                        className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all text-white font-pixel font-bold text-center [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [-moz-appearance:textfield]"
+                                    />
                                 </div>
                             </div>
 
-                            <div>
-                                <label className="block text-xs font-bold text-white mb-2 font-pixel">
-                                    Jogadores por equipe
-                                </label>
-                                <input
-                                    type="number"
-                                    value={porTime}
-                                    onChange={(e) => setPorTime(e.target.value)}
-                                    min={1}
-                                    max={20}
-                                    placeholder="6"
-                                    className="w-full p-3 bg-white/10 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:border-white focus:outline-none focus:ring-2 focus:ring-white/30 transition-all text-white font-pixel font-bold text-center [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none [&::-moz-number-spin-box]:appearance-none [-moz-appearance:textfield]"
-                                />
-                            </div>
-
-                            <button 
-                                onClick={handleSortear}
-                                className="w-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white font-bold py-5 px-6 rounded-2xl border-2 border-blue-500/50 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wider font-pixel disabled:opacity-50 disabled:cursor-not-allowed"
-                                disabled={!nomes.trim()}
-                            >
-                                Sortear
-                            </button>
-
-                            {resultado && (
+                            {/* BOTÕES ANCORADOS NO FUNDO */}
+                            <div className="space-y-3">
                                 <button 
-                                    onClick={handleLimpar}
-                                    className="w-full bg-white/10 hover:bg-white/20 border-2 border-white/50 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 text-xs uppercase tracking-wider font-pixel"
+                                    onClick={handleSortear}
+                                    className="w-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:from-blue-500 hover:to-blue-700 text-white font-bold py-5 px-6 rounded-2xl border-2 border-blue-500/50 shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 text-xs uppercase tracking-wider font-pixel disabled:opacity-50 disabled:cursor-not-allowed"
+                                    disabled={!nomes.trim()}
                                 >
-                                    Limpar
+                                    Sortear
                                 </button>
-                            )}
+
+                                {resultado && (
+                                    <button 
+                                        onClick={handleLimpar}
+                                        className="w-full bg-white/10 hover:bg-white/20 border-2 border-white/50 text-white font-bold py-3 px-6 rounded-xl transition-all duration-200 text-xs uppercase tracking-wider font-pixel"
+                                    >
+                                        Limpar
+                                    </button>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -408,7 +411,7 @@ athos`}
                 )}
             </div>
 
-            {/* MODAL AJUDA BALANCEAMENTO */}
+            {/* MODAL AJUDA */}
             {mostrarAjuda && (
                 <div 
                     className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
@@ -430,7 +433,6 @@ athos`}
                             </button>
                         </div>
 
-                        {/* ✅ MUDANÇA 3: Modal atualizado com grupos */}
                         <div className="space-y-4 text-white text-sm leading-relaxed">
                             <p>
                                 O <span className="text-blue-400 font-bold">Balanceamento</span> permite definir jogadores que <span className="text-red-500 font-bold">NÃO PODEM</span> ficar na mesma equipe. Cada grupo de nomes separado por <span className="text-yellow-400 font-bold">linha em branco</span> cria uma regra.
